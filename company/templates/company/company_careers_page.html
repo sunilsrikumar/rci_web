@@ -1,0 +1,869 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load static %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-companycareerspage{% endblock %}
+{% block content %}
+
+
+
+
+<div id="cform" class="feedback" style="display:none;">
+    <div class="feedbackInner">
+        <div id="statusDiv" class="feedbackSmtMsg"></div>
+        <form method="post" id="feedbackForm" name="feedbackImg" class="drop"><input type='hidden' name='csrfmiddlewaretoken' value='PbXS6XLfjE9Z6955byNJMzXKwYoIIeyZ' />
+                <div class="feedbackFrm">
+                    <input autofocus="autofocus" class="feedbackTxt" id="id_email" maxlength="100" name="email" onkeyup="limitText(this.form.email, 150)" placeholder="Your email" title="Please enter a valid email" type="email" />
+                    <span id="mailValmsg"></span>
+                    <textarea class="feedbackTxtArea" cols="20" id="id_comments" maxlength="1000" name="comments" onkeyup="limitText(this.form.comments, 1000)" placeholder="Inquiry/Feedback" rows="4" title="Please enter feedback">
+</textarea>
+                    <span id="comntValmsg"></span>
+                    <div class="clear"></div>
+                    <div class="captchaHolder">
+                    <div class="captcha_feedback">
+                        <img alt="Captcha code" src="#" />
+                    </div>
+                            <input autocomplete="off" class="feedbackTxt" id="id_captcha" maxlength="10" name="captcha" onkeyup="limitText(this.form.captcha, 10)" placeholder="Enter Code *" title="Please enter valid captcha" type="text" />
+                        <span id="captchafeedValMsg" ></span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <br>
+                <div class="ruler"></div>
+                <div class="feedbackBtm"></div>
+                <div class="feedbackSbmt">
+                    <input type="submit" value="Submit Message" name="submit" class="submitBtn" />
+                </div>
+                <div class="clear"></div>
+            </form>
+        </div>
+    <div class="close" title="Close button"><span class="icon_Homeleft"></span></div>
+</div><!--feedback form -->
+<div id="breadcrumb">
+    <div id="breadcrumbInner">
+        <span>
+            <a href="{{ page.get_parent.url }}">Company</a>
+            <span class="breadcrumbSlash">/</span> Careers
+        </span>
+        <div class="clear"></div>
+    </div>
+</div>
+
+        <div class="clear"></div>
+        <section class="homeWrapper">
+            <div class="homeContent clearfix">
+
+                <div id="content" class="services">
+                    <div class="leftCnt privacy">
+
+                    </div>
+                </div>
+
+                <section class="content">
+
+<div class="casesubNav" id="tripleSubNav">
+    <div class="subMenus">
+        <ul class="menuSelected">
+            <li class="selectOption" value="">
+                <a href="#">
+
+                  <span id="selectTitle">- More on Careers -</span>
+                    <span class=""></span>
+
+                    <span></span>
+                </a>
+            </li>
+            <li><span class="iconHomedown"></span></li>
+        </ul>
+        <ul id="mobMenuHolder" class="companyMenuHolder clearfix">
+            <li>
+                <a href="openings/index.html">
+              <span value="Open Positions">Open Positions</span>
+            </a>
+            </li>
+            <li>
+                <a href="entry-level-openings/index.html">
+              <span value="Entry-level Openings">Entry-Level Opportunities</span>
+            </a>
+            </li>
+            <li class="navLastChild">
+                <a href="apply/index.html">
+              <span value="Submit Resume">Submit Resume</span>
+            </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<section class="bigDataWrapper">
+    <h1>{{page.career_page_heading}}</h1>
+    <p class="analyticsDesc headDesc">
+        <span>{{page.career_page_subheading}}</span>
+    </p>
+    <p class="expandTitle">{{page.career_intro}}</p>
+</section>
+<div class="careerContent clearfix bigDataWrapper">
+
+
+
+    {% for item in page.career_work_culture.all %}
+
+    <div class="workCulture">
+        <div class="leftContent">
+            {% image item.image max-1000x500 %}
+        </div>
+        <div class="rightContent">
+            <h2>{{ item.block_title }}</h2>
+            <p> {{item.block_intro}}</p>
+            <p class="rightContentP">We are a flat organization and we strive to keep it that way. Ranks and designations do not stand in the way of innovation, leadership, and individual initiative. Creativity sparks, ideas mature, and solutions evolve in small collaborative teams. Hard work is expected, but we make sure to have fun while we are at it. QBurstians enjoy what they do and so they do it even better.</p>
+            <p class="rightContentIpad">
+                Gear up to be constantly challenged in this fast paced environment that lauds independence, critical thinking, imagination and above all, team spirit.</p>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    {% endfor %}
+
+    {% for item in page.career_block.all %}
+    <div class="celebratingWork">
+        <div class="rightContent">
+            {% image item.image max-1000x500 %}
+        </div>
+        <div class="leftContent">
+            <h2>{{ item.block_title }}</h2>
+            <p>{{item.block_intro}}</p>
+        </div>
+        <div class="clear"></div>
+    </div>
+    {% endfor %}
+
+    <div class="checkList leftValues">
+        <h2>{{page.career_checklist_header}}</h2>
+        <ul>
+            <li>
+                <span class="icon-checkmark iconCheck"></span>
+                <span class="listValues">You have rock-solid foundation of CS fundamentals.</span>
+            </li>
+            <li>
+                <span class="icon-checkmark iconCheck"></span>
+                <span class="listValues">You are a generalist and know at least two languages.</span>
+            </li>
+            <li>
+                <span class="icon-checkmark iconCheck"></span>
+                <span class="listValues">If you don't, you are willing to learn it.</span>
+            </li>
+            <li>
+                <span class="icon-checkmark iconCheck"></span>
+                <span class="listValues">You know when to apply design patterns.</span>
+            </li>
+            <li>
+                <span class="icon-checkmark iconCheck"></span>
+                <span class="listValues">You are test-infected.</span>
+            </li>
+            <li>
+                <span class="icon-checkmark iconCheck"></span>
+                <span class="listValues">You think of application performance as a feature.</span>
+            </li>
+            <li>
+                <span class="icon-checkmark iconCheck"></span>
+                <span class="listValues">You have excellent communication and interpersonal skills.</span>
+            </li>
+            <li>
+                <span class="icon-checkmark iconCheck"></span>
+                <span class="listValues">Good sense of humor; you will need it when the going gets tough.</span>
+            </li>
+        </ul>
+        <p class="careerPara">If you have mostly ticks and not crosses, you might want to check out our <span class="elementLink"><a href="openings/index.html" target="self">current openings</a>.</span></p>
+    </div>
+
+    <div class="testimonial">
+
+<h4 class="testimonialTitle">What Employees Sayyyy</h4>
+<div id="scroller" class="scrollerCnt">
+	<div class="quotes icon_HomeTestimonial"></div>
+	<div class="navigationArrow" style="display:block"></div>
+	<div class="mobBorder"></div>
+	<ul class="slides">
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>QBurst provides me with an amazing learning experience and an opportunity to get acquainted with the latest technologies and platforms. A wonderful environment to work in, where ideas are encouraged and relationships made.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/sandeep.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Sandeep Pradeep</p>
+							<small>Lead Engineer, QA</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>QBurst gave me the break that I was looking for. Working here gave me a 360 degree view of project execution and in-depth experience in multiple project handling. The organization is made up of young and driven employees who willingly go that extra mile to do things right. With flexible timings and an employee friendly environment, it helped me gain a balance between work and family.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/rekha.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Rekha Radhakrishnan</p>
+							<small>Director, Projects</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>I consider myself lucky working in QBurst. I&#39;ve been enjoying work life ever since I joined QBurst. Here we have a lot of opportunities to learn and to work with wonderful people.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/kartik.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Karthik Gopalakrishnan</p>
+							<small>Architect</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>Out-of-the-box thinking is encouraged. There is never a dull moment or a shortage of development opportunities. In a short span I have learnt what I havent in my entire career
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/saju.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Saju K. Devasia</p>
+							<small>Director, Projects</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>Well, as they say &#39;The early years of life are critical to the development of intelligence, personality and skills.&#39; QBurst provided me with the perfect blend of challenges, support and exposure when I first stepped into the industry. Since then I have never had to look back, knowing that there is immense potential for growth and a great deal of satisfaction when you get home after work.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/visakhP.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Visakh Padmanabhan</p>
+							<small>Lead Engineer</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>In my five years of experience with QBurst, Ive worked on various projects that has not only excited me but also enriched my career. QBurst provides me with excellent learning opportunities and an employee-friendly environment, helping me to grow professionally as well as personally. Extremely happy to be part of this wonderful organization!
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/prasadJ.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Prasad Jebaretnam</p>
+							<small>Associate Architect</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>I joined QBurst four months ago, and I firmly believe that Ive made the right choice. A wonderful work environment and a helpful group of employees make me feel so. QBurst is fast growing, and I also find large scope for future growth. Here, I learned how to approach a problem systematically and how to work as a team.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/vidyaV.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Vidya Vijay</p>
+							<small>Senior Software Engineer</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>QBurst provides its employees with a good work atmosphere. We learn new things and apply them in our work to bring out the best.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/parvathyS.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Parvathy Nair</p>
+							<small>Senior Engineer, QA</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>I first joined QBurst as a trainee.The training given to me was excellent. The friendly atmosphere and supportive approach have helped me a lot in transforming myself into a thorough IT professional. The unique way of approaching projects and assignments are fascinating and is really a source of motivation for many beginners like me.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/JiluMary.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Jilu Joy</p>
+							<small>Lead Engineer</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>QBurst helps its employees maintain the right balance between his/her professional and personal goals. Setting realistic challenges, backing it up with the right motivation to achieve it and recognition for hard work is a unique blend that keeps me wanting to come back to work everyday!
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/parvathy.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Parvathy Prasad</p>
+							<small>Deputy Head, Business Development</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>In QBurst you have the opportunity to learn new things everyday. Youll love the work culture, flexibility and the encouragement that the management offers. A wonderful place to improve your skills!
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/syam.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Syam Mohan</p>
+							<small>Architect</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>In the one year that Ive been with QBurst, my experience has been exceptional! New ideas are encouraged and the management is extremely transparent.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/praveen.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Praveen R</p>
+							<small>Deputy Head, Business Development</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>I got exposed to different platforms and domains in the past 6 years, working with QBurst. It offers a wonderful and flexible working environment for its employees.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/jyothish.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Jyothish Abraham</p>
+							<small>Architect</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>QBurst is my first company. The work culture here is amazing, and I really like the people I work with. I am excited to be a part of a company that lays its trust on the strength of the employees.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/suslov.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Suslov Babu</p>
+							<small>Lead Engineer</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>Being my first company, QBurst is very special to me. The atmosphere here is all the more friendly and encouraging. My skills have developed a lot and I&#39;m extremely happy to contribute to the growth of the company. I would definitely recommend QBurst to everyone who is on the lookout for a promising career.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/SteniWilson.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Steni Wilson</p>
+							<small>Lead Engineer</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>QBurst is my first organization. The support that was extended to me by my colleagues has made this a second home for me. We have an excellent work atmosphere, where everyone is free to express their thoughts and opinions. Life at QBurst has helped me mold myself into a good professional.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/SoumyaBaiju.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Soumya Baiju</p>
+							<small>Lead Engineer, QA</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>The work environment at QBurst is casual but energetic. The flat organizational structure and the transparency make it all the more comfortable for a new comer. The team I am working with is very friendly and helpful. I believe I can build a strong foundation for my career, starting off with QBurst.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/visakhS.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Visakh Soman</p>
+							<small>Senior Analyst, Digital Marketing</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>Sheer abundance of talent to learn from, challenging projects to prove myself, and a flat organizational structure where a fresher has the same right of opinion as a Project Manager, are a few things that make QBurst ideal for me to build my career.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/SrijithVijayamohan.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Srijith Vijayamohanan</p>
+							<small>Architect</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>Working with QBurst has really been an enlightening experience.With an experienced team of professionals, I have learned to work on an array of the latest technologies and the most challenging projects. I am proud to be a member of the QBurst family, and I wish it all success in its future endeavors.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/mahin.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Mahin Sha</p>
+							<small>Lead Engineer</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>Having had the opportunity of taking responsibility on projects at an early stage of my career, I improved both technically and personally at a rapid pace.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/Ameena_2.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Ameena Iqbal</p>
+							<small>Project Manager</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>QBurst is an employee-friendly company, which provides one with great opportunities to work for great clients. I work on projects that not only excite me but also enrich my technical knowledge and my career. The confident approach that QBurst takes to implement its strategy, combined with a culture of humbleness and humility, make me proud to be a QBurstian.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/manjusha.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Manjusha Sukumarapillai</p>
+							<small>Associate Project Manager</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>An employee friendly organization with a strong commitment toward improvement, I am happy to be part of the QBurst family because I learn something new everyday.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/JoseAntony.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Jose Antony</p>
+							<small>Architect</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>I have found all of my QBurst projects to be exciting and challenging. The working environment and people are great. The atmosphere here is very relaxed, but never lacking that professional touch.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/AjithRaj.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Ajith Raj</p>
+							<small>Architect</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>QBurst is where I got an opportunity to start my software career. I am really enjoying the way we co-ordinate and develop to deliver great products.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/Kamaljith_2.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Kamaljith K.V</p>
+							<small>Associate Project Manager</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>QBurst to me is a workplace that offers a very unique work culture. I like the simple hierarchy in the organization that provides me with a very wide range of opportunities for growth in every respect.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/Sujith-kumar_2.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Sujith Kumar</p>
+							<small>Associate Architect</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>If you are someone who is hardworking, ambitious, has an open mind to learn and adopt new ideas , then I can without doubt say that QBurst is the right place for you.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/Manooja.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Manooja Manoharan</p>
+							<small>Senior Project Manager</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>QBurst is where I started my professional career and am proud to say that I am still going strong here.I am very proud to be a part of the company where feedom of thought plays a prominent part in our work. I prefer to continue to be a QBurstian and improve my capabilities in different technologies.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/lekshmi.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Lekshmi Krishnan</p>
+							<small>Associate Architect </small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>What I like most about my work at QBurst is that it is diverse and constantly challenging.QBurst has allowed me the freedom to grow and progress to develop my own work style.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/aparna_66.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Aparna Manju</p>
+							<small>Architect</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>There is unlimited growth potential at QBurst. I am always learning something new here and my work is varied as well as challenging.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/Kavitha.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Kavitha Jayan</p>
+							<small>Lead Engineer</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>QBurst has been the turning point in my career. The management is extremely supportive and this gives me confidence to handle my projects.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/Binesh-_2.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Binesh T Vidyan</p>
+							<small>Lead Engineer</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>The learning experience I gain every day from QBurst is invaluable. This is a place where one can work as well as enjoy, day after day.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/lloyd.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Lloyd Samson</p>
+							<small>Lead Engineer, QA</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>QBurst has been a guiding force in my technical career. I got an opportunity to handle a variety of projects which has improved my skills substantially and gives me the freedom to be myself.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/Sofia_2.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Sophia Lawrence</p>
+							<small>Associate Principal Engineer</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>When it comes to professionalism, QBurst is simply great!  The most valuable thing that I found here is freedom of thought. I am proud to be a part of this family.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/adarsh.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Adarsh M</p>
+							<small>Architect</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>QBurst has motivated me continuously in my every projects to scale up to new heights in my profession. I am really fortunate to be part of this wonderful organization.
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/praveen_2.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Praveen S.U</p>
+							<small>Associate Architect, QA</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+		<li class="testimonialCnt">
+            <div class="testimonialMid">
+            	<i>At QBurst, we are constantly given opportunities to accept new challenges head on. This is where I&#39;ve grown - professionally and personally!
+					<br>
+					<span class="clear"></span>
+				</i>
+				<div class="scrollHolder">
+            		<div class="clientScroll">
+                		<div class="jobtesti testiphoto testiClient" style="background: url('../../images/jobTestimonial/Savitha.jpg') no-repeat scroll 0 0 transparent;">
+						</div>
+                    	<div class="jobText floatLeft">
+							<p class="clientName">Savitha Rajagopal</p>
+							<small>Senior Manager, Business Analysis</small>
+						</div>
+					</div>
+				</div>
+			</div>
+        </li>
+
+	</ul>
+</div>
+    </div>
+
+</div>
+
+                </section>
+
+            </div>
+        </section>
+
+
+
+    </div>
+
+
+{% endblock %}

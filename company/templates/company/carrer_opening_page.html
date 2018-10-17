@@ -1,0 +1,574 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load static %}
+
+{% block body_class %}template-blogpage{% endblock %}
+
+{% block content %}
+
+
+
+<div id="cform" class="feedback" style="display:none;">
+    <div class="feedbackInner">
+        <div id="statusDiv" class="feedbackSmtMsg"></div>
+        <form method="post" id="feedbackForm" name="feedbackImg" class="drop"><input type='hidden' name='csrfmiddlewaretoken' value='PbXS6XLfjE9Z6955byNJMzXKwYoIIeyZ' />
+                <div class="feedbackFrm">
+                    <input autofocus="autofocus" class="feedbackTxt" id="id_email" maxlength="100" name="email" onkeyup="limitText(this.form.email, 150)" placeholder="Your email" title="Please enter a valid email" type="email" />
+                    <span id="mailValmsg"></span>
+                    <textarea class="feedbackTxtArea" cols="20" id="id_comments" maxlength="1000" name="comments" onkeyup="limitText(this.form.comments, 1000)" placeholder="Inquiry/Feedback" rows="4" title="Please enter feedback">
+</textarea>
+                    <span id="comntValmsg"></span>
+                    <div class="clear"></div>
+                    <div class="captchaHolder">
+                    <div class="captcha_feedback">
+                        <img alt="Captcha code" src="#" />
+                    </div>
+                            <input autocomplete="off" class="feedbackTxt" id="id_captcha" maxlength="10" name="captcha" onkeyup="limitText(this.form.captcha, 10)" placeholder="Enter Code *" title="Please enter valid captcha" type="text" />
+                        <span id="captchafeedValMsg" ></span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <br>
+                <div class="ruler"></div>
+                <div class="feedbackBtm"></div>
+                <div class="feedbackSbmt">
+                    <input type="submit" value="Submit Message" name="submit" class="submitBtn" />
+                </div>
+                <div class="clear"></div>
+            </form>
+        </div>
+    <div class="close" title="Close button"><span class="icon_Homeleft"></span></div>
+</div><!--feedback form -->
+<div class='errorbkopacity'></div>
+<div class="errormsg">
+    <p></p>
+</div>
+
+<div id="breadcrumb">
+    <div id="breadcrumbInner">
+        <span>
+            <a href="{{ page.get_parent.url }}">Company</a>
+            <span class="breadcrumbSlash">/</span>
+        <a href="{{ page.get_parent.url }}">Careers</a>
+        <span class="breadcrumbSlash">/</span> Open Positions
+        </span>
+    </div>
+</div>
+
+<section id="openPositions">
+    <div class="casesubNav" id="tripleSubNav">
+        <div class="subMenus">
+            <ul class="menuSelected">
+                <li class="selectOption" value="">
+                    <a href="index.html">
+                    <span>Open Positions</span>
+                </a>
+                </li>
+                <li><span class="iconHomedown"></span></li>
+            </ul>
+            <ul id="mobMenuHolder" class="companyMenuHolder clearfix">
+                <li class="active">
+                    <a href="index.html">
+              <span value="Open Positions">Open Positions</span>
+            </a>
+                </li>
+                <li>
+                    <a href="../entry-level-openings/index.html">
+              <span value="Entry-level Openings">Entry-Level Opportunities</span>
+            </a>
+                </li>
+                <li class="navLastChild">
+                    <a href="../apply/index.html">
+              <span value="Submit Resume">Submit Resume</span>
+            </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+<section class="innerBanner">
+	<h1 class="bannerHead">{{heading}}</h1>
+	<div class="flexslider">
+		<ul class="slides">
+
+
+			<li>
+				<section class="banner">
+                     {% image page.image original %}
+				</section>
+			</li>
+
+		</ul>
+	</div>
+</section>
+        <div class="clear"></div>
+        <section class="homeWrapper">
+            <div class="homeContent clearfix">
+
+                <div id="content" class="services">
+                    <div class="leftCnt privacy">
+
+                    </div>
+                </div>
+
+                <section class="content">
+
+    <div class="openHeadArea clearfix">
+        <p>Select a location from the list below to view our current openings.</p>
+        <div class="open_dropdown">
+            <select name="location" id="location" class="dropdown">
+                <option value='All' selected="selected">All</option>
+
+                <option value="ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgMD12KwKDA">Australia - Sydney</option>
+
+                <option value="ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgMDKoKMKDA">India - Bangalore</option>
+
+                <option value="ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgMCogaEJDA">India - Calicut</option>
+
+                <option value="ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgICvtLUKDA">India - Chennai</option>
+
+                <option value="ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgIDburAKDA">India - Cochin</option>
+
+                <option value="ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgMColbAKDA">India - Koratty</option>
+
+                <option value="ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgMDy_q4KDA">India - Trivandrum</option>
+
+                <option value="ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgMC1z7UKDA">Singapore</option>
+
+                <option value="ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgIDbi6UKDA">UAE - Dubai</option>
+
+                <option value="ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgIDb1bgKDA">UK -  Salisbury</option>
+
+                <option value="ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgIDpxaUKDA">USA - Fairfax, Virginia</option>
+
+                <option value="ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgOC1_7gKDA">USA - Stafford, Texas</option>
+
+            </select>
+        </div>
+    </div>
+    <div id="jobsTable">
+        <ul class="careerHead">
+            <li>
+                <div class="holder">
+                    <p>Job Title</p>
+                    <p>Job Code</p>
+                    <p>Experience</p>
+                </div>
+            </li>
+        </ul>
+        <ul class="careerlists">
+
+            <li class="clearfix">
+                <a style="visibility: hidden;" name="SEUX/192"></a>
+                <div class="holder">
+                    <p class="jobtitle">Senior Engineer, UX</p>
+                    <p class="jobC">SEUX/192</p>
+                    <p class="expce">3 - 6 years</p>
+                    <p class="toggler"><span class="toChild"></span></p>
+                </div>
+                <div class="careercontent clearfix">
+                    <p class="experience"><span class="exp">Experience</span><span>3 - 6 years</span></p>
+                    <div class="clear"></div>
+                    <h4> Location </h4>
+                    <p class="lctn">
+                        <ul>
+
+                            <li>India - Cochin</li>
+
+                        </ul>
+                    </p>
+                    <h4> Description </h4><p>We are looking for an experienced UX Engineer to help build our next generation of web and mobile applications. You will work with the rest of our team to build, launch, revamp and maintain Web and Mobile designs for our clients. Our UX team is data-driven and focused on innovation.</p><h4> Responsibilities </h4><ul>
+<li>Requirement gathering</li>
+<li>User research, user requirement gathering</li>
+<li>Create personas, scenarios, task flows and information architecture.</li>
+<li>Create wireframes and low fidelity prototypes</li>
+<li>Conduct usability testing and heuristic evaluation</li>
+<li>Determining accurate time estimates for defined tasks</li>
+</ul>
+<h4> Requirements </h4><ul>
+<li>Strong knowledge of user centered design practices</li>
+<li>Experience in prototyping for iOS and Android mobile applications</li>
+<li>Strong understanding of responsive web design.</li>
+<li>Strong knowledge of UX design principles and methodologies</li>
+<li>Experience creating wireframes, using prototyping tools such as Axure, Balsamiq (or similar).</li>
+<li>Experience with user interviewing and user / usability testing.</li>
+<li>Capable of working on multiple projects simultaneously</li>
+<li>Excellent communication and written skills</li>
+</ul>
+
+                    <div class="clear"></div>
+                    <div class="postresume">
+                        <form name="jobOpeningsToApply" method="post" action="https://www.qburst.com/company/career/apply/">
+                            <input type="hidden" name="jobCode" value="SEUX/192" />
+                            <input type="hidden" name="jobLocation" value="[{&#39;ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgIDburAKDA&#39;: u&#39;India - Cochin&#39;}]" />
+                            <input type="submit" class="resumebtn" value='Apply with your Resume' />
+                        </form>
+                    </div>
+                    <div class="shareBox">
+                        <h3>Share with Friends</h3>
+                        <!-- AddThis Button BEGIN -->
+                        <div class="addthis_toolbox addthis_default_style">
+                            <a class="addthis_button_linkedin" addthis:url="www.qburst.com/company/career/openings/#SEUX/192" addthis:title="Senior Engineer, UX" addthis:description=" We are looking for an experienced UX Engineer to help build our next generation of web and mobile applications. You will work with the rest of our team to build, launch, revamp and maintain Web and Mobile designs for our clients. Our UX team is data-driven and focused on innovation. " addthis:ui_email_note=" We are looking for an experienced UX Engineer to help build our next generation of web and mobile applications. You will work with the rest of our team to build, launch, revamp and maintain Web and Mobile designs for our clients. Our UX team is data-driven and focused on innovation. ">
+				        </a>
+                            <a class="addthis_button_twitter" addthis:url="www.qburst.com/company/career/openings/#SEUX/192" addthis:title=" We are looking for an experienced UX Engineer to help build our next generation of web and mobile applications. You will work with the rest of our team to build, launch, revamp and maintain Web and Mobile designs for our clients. Our UX team is data-driven and focused on innovation. " addthis:description=" We are looking for an experienced UX Engineer to help build our next generation of web and mobile applications. You will work with the rest of our team to build, launch, revamp and maintain Web and Mobile designs for our clients. Our UX team is data-driven and focused on innovation. " addthis:ui_email_note=" We are looking for an experienced UX Engineer to help build our next generation of web and mobile applications. You will work with the rest of our team to build, launch, revamp and maintain Web and Mobile designs for our clients. Our UX team is data-driven and focused on innovation. ">
+				        </a>
+                            <a class="addthis_button_facebook" addthis:url="www.qburst.com/company/career/openings/#SEUX/192" addthis:title="Senior Engineer, UX" addthis:description=" We are looking for an experienced UX Engineer to help build our next generation of web and mobile applications. You will work with the rest of our team to build, launch, revamp and maintain Web and Mobile designs for our clients. Our UX team is data-driven and focused on innovation. " addthis:ui_email_note=" We are looking for an experienced UX Engineer to help build our next generation of web and mobile applications. You will work with the rest of our team to build, launch, revamp and maintain Web and Mobile designs for our clients. Our UX team is data-driven and focused on innovation. ">
+				    	</a>
+                            <a class="addthis_button_email" addthis:url="www.qburst.com/company/career/openings/#SEUX/192" addthis:title="Senior Engineer, UX" addthis:description=" We are looking for an experienced UX Engineer to help build our next generation of web and mobile applications. You will work with the rest of our team to build, launch, revamp and maintain Web and Mobile designs for our clients. Our UX team is data-driven and focused on innovation. " addthis:ui_email_note=" We are looking for an experienced UX Engineer to help build our next generation of web and mobile applications. You will work with the rest of our team to build, launch, revamp and maintain Web and Mobile designs for our clients. Our UX team is data-driven and focused on innovation. ">
+				        </a>
+                        </div>
+                        <script type="text/javascript">
+                        var addthis_config = { "data_track_addressbar": false };
+                        </script>
+                        <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51f9f5212632972d"></script>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </li>
+
+            <li class="clearfix">
+                <a style="visibility: hidden;" name="SE-JS/188"></a>
+                <div class="holder">
+                    <p class="jobtitle">Engineer - JavaScript</p>
+                    <p class="jobC">SE-JS/188</p>
+                    <p class="expce">1 - 3 years</p>
+                    <p class="toggler"><span class="toChild"></span></p>
+                </div>
+                <div class="careercontent clearfix">
+                    <p class="experience"><span class="exp">Experience</span><span>1 - 3 years</span></p>
+                    <div class="clear"></div>
+                    <h4> Location </h4>
+                    <p class="lctn">
+                        <ul>
+
+                            <li>India - Trivandrum</li>
+
+                        </ul>
+                    </p>
+                    <h4> Description </h4><p>We are looking for a professional Javascript Developer. You will provide sound functional, scalable applications.</p><h4> Responsibilities </h4><ul>
+<li>Integration of user-facing elements developed by front-end developers with server side logic</li>
+<li>Writing reusable, testable, and efficient code</li>
+<li>Design and implementation of low-latency, high-availability, and performant applications</li>
+<li>Implementation of security and data protection</li>
+<li>Integration of data storage solutions</li>
+</ul>
+<h4> Requirements </h4><ul>
+<li>A proven track record of developing software, web applications using JavaScript</li>
+<li>Knowledge of Node.js and frameworks available for it such as Express, StrongLoop, etc </li>
+<li>Experience in writing back end server components</li>
+<li>Expertise in microservices architecture</li>
+<li>Understanding of front-end technologies, such as HTML5, CSS3 and JS frameworks like Angular2.0 or React JS would be a plus</li>
+<li>Experience with performing QA tests alongside development</li>
+</ul>
+
+                    <div class="clear"></div>
+                    <div class="postresume">
+                        <form name="jobOpeningsToApply" method="post" action="https://www.qburst.com/company/career/apply/">
+                            <input type="hidden" name="jobCode" value="SE-JS/188" />
+                            <input type="hidden" name="jobLocation" value="[{&#39;ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgMDy_q4KDA&#39;: u&#39;India - Trivandrum&#39;}]" />
+                            <input type="submit" class="resumebtn" value='Apply with your Resume' />
+                        </form>
+                    </div>
+                    <div class="shareBox">
+                        <h3>Share with Friends</h3>
+                        <!-- AddThis Button BEGIN -->
+                        <div class="addthis_toolbox addthis_default_style">
+                            <a class="addthis_button_linkedin" addthis:url="www.qburst.com/company/career/openings/#SE-JS/188" addthis:title="Engineer - JavaScript" addthis:description=" We are looking for a professional Javascript Developer. You will provide sound functional, scalable applications. " addthis:ui_email_note=" We are looking for a professional Javascript Developer. You will provide sound functional, scalable applications. ">
+				        </a>
+                            <a class="addthis_button_twitter" addthis:url="www.qburst.com/company/career/openings/#SE-JS/188" addthis:title=" We are looking for a professional Javascript Developer. You will provide sound functional, scalable applications. " addthis:description=" We are looking for a professional Javascript Developer. You will provide sound functional, scalable applications. " addthis:ui_email_note=" We are looking for a professional Javascript Developer. You will provide sound functional, scalable applications. ">
+				        </a>
+                            <a class="addthis_button_facebook" addthis:url="www.qburst.com/company/career/openings/#SE-JS/188" addthis:title="Engineer - JavaScript" addthis:description=" We are looking for a professional Javascript Developer. You will provide sound functional, scalable applications. " addthis:ui_email_note=" We are looking for a professional Javascript Developer. You will provide sound functional, scalable applications. ">
+				    	</a>
+                            <a class="addthis_button_email" addthis:url="www.qburst.com/company/career/openings/#SE-JS/188" addthis:title="Engineer - JavaScript" addthis:description=" We are looking for a professional Javascript Developer. You will provide sound functional, scalable applications. " addthis:ui_email_note=" We are looking for a professional Javascript Developer. You will provide sound functional, scalable applications. ">
+				        </a>
+                        </div>
+                        <script type="text/javascript">
+                        var addthis_config = { "data_track_addressbar": false };
+                        </script>
+                        <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51f9f5212632972d"></script>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </li>
+
+            <li class="clearfix">
+                <a style="visibility: hidden;" name="SSE-BIG/178"></a>
+                <div class="holder">
+                    <p class="jobtitle">Senior Engineer - Big Data</p>
+           </section>             <p class="jobC">SSE-BIG/178</p>
+                    <p class="expce">2 - 5 years</p>
+                    <p class="toggler"><span class="toChild"></span></p>
+                </div>
+                <div class="careercontent clearfix">
+                    <p class="experience"><span class="exp">Experience</span><span>2 - 5 years</span></p>
+                    <div class="clear"></div>
+                    <h4> Location </h4>
+                    <p class="lctn">
+                        <ul>
+
+                            <li>India - Trivandrum</li>
+
+                        </ul>
+                    </p>
+                    <h4> Description </h4><p>QBurst is looking for Senior Data Engineers who can help us build massive big data pipelines. As a Data Engineer at QBurst, you have to develop, construct, test and maintain architectures used for large-scale data processing.</p><h4> Responsibilities </h4><ul>
+<li>Develop data engineering pipelines for clients, that process thousands of records per second</li>
+<li>Analyze client requirements, come up with estimates and implementation plan within a short turn around time</li>
+<li>Develop complex ETL applications using Spark and perform continuous unit and integration tests</li>
+<li>Routine code review and peer reviews for implementation approach</li>
+<li>​Ensure code is efficient, well tested, documented and performs at scale</li>
+</ul>
+<h4> Requirements </h4><ul>
+<li>​Experience in Scala, Spark</li>
+<li>Knowledge in building production ready applications in the Hadoop ecosystem + Cassandra, Kafka</li>
+<li>Considerable experience in designing databases, and familiarity with both RDBMS and NOSQL concepts</li>
+<li>Experience in working with Akka is a plus</li>
+<li>Ability to work in a fast paced, Agile environment</li>
+</ul>
+
+                    <div class="clear"></div>
+                    <div class="postresume">
+                        <form name="jobOpeningsToApply" method="post" action="https://www.qburst.com/company/career/apply/">
+                            <input type="hidden" name="jobCode" value="SSE-BIG/178" />
+                            <input type="hidden" name="jobLocation" value="[{&#39;ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgMDy_q4KDA&#39;: u&#39;India - Trivandrum&#39;}]" />
+                            <input type="submit" class="resumebtn" value='Apply with your Resume' />
+                        </form>
+                    </div>
+                    <div class="shareBox">
+                        <h3>Share with Friends</h3>
+                        <!-- AddThis Button BEGIN -->
+                        <div class="addthis_toolbox addthis_default_style">
+                            <a class="addthis_button_linkedin" addthis:url="www.qburst.com/company/career/openings/#SSE-BIG/178" addthis:title="Senior Engineer - Big Data" addthis:description=" QBurst is looking for Senior Data Engineers who can help us build massive big data pipelines. As a Data Engineer at QBurst, you have to develop, construct, test and maintain architectures used for large-scale data processing. " addthis:ui_email_note=" QBurst is looking for Senior Data Engineers who can help us build massive big data pipelines. As a Data Engineer at QBurst, you have to develop, construct, test and maintain architectures used for large-scale data processing. ">
+				        </a>
+                            <a class="addthis_button_twitter" addthis:url="www.qburst.com/company/career/openings/#SSE-BIG/178" addthis:title=" QBurst is looking for Senior Data Engineers who can help us build massive big data pipelines. As a Data Engineer at QBurst, you have to develop, construct, test and maintain architectures used for large-scale data processing. " addthis:description=" QBurst is looking for Senior Data Engineers who can help us build massive big data pipelines. As a Data Engineer at QBurst, you have to develop, construct, test and maintain architectures used for large-scale data processing. " addthis:ui_email_note=" QBurst is looking for Senior Data Engineers who can help us build massive big data pipelines. As a Data Engineer at QBurst, you have to develop, construct, test and maintain architectures used for large-scale data processing. ">
+				        </a>
+                            <a class="addthis_button_facebook" addthis:url="www.qburst.com/company/career/openings/#SSE-BIG/178" addthis:title="Senior Engineer - Big Data" addthis:description=" QBurst is looking for Senior Data Engineers who can help us build massive big data pipelines. As a Data Engineer at QBurst, you have to develop, construct, test and maintain architectures used for large-scale data processing. " addthis:ui_email_note=" QBurst is looking for Senior Data Engineers who can help us build massive big data pipelines. As a Data Engineer at QBurst, you have to develop, construct, test and maintain architectures used for large-scale data processing. ">
+				    	</a>
+                            <a class="addthis_button_email" addthis:url="www.qburst.com/company/career/openings/#SSE-BIG/178" addthis:title="Senior Engineer - Big Data" addthis:description=" QBurst is looking for Senior Data Engineers who can help us build massive big data pipelines. As a Data Engineer at QBurst, you have to develop, construct, test and maintain architectures used for large-scale data processing. " addthis:ui_email_note=" QBurst is looking for Senior Data Engineers who can help us build massive big data pipelines. As a Data Engineer at QBurst, you have to develop, construct, test and maintain architectures used for large-scale data processing. ">
+				        </a>
+                        </div>
+                        <script type="text/javascript">
+                        var addthis_config = { "data_track_addressbar": false };
+                        </script>
+                        <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51f9f5212632972d"></script>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </li>
+
+            <li class="clearfix">
+                <a style="visibility: hidden;" name="EXB/174"></a>
+                <div class="holder">
+                    <p class="jobtitle">Executive, Business Development</p>
+                    <p class="jobC">EXB/174</p>
+                    <p class="expce">2 - 4 years</p>
+                    <p class="toggler"><span class="toChild"></span></p>
+                </div>
+                <div class="careercontent clearfix">
+                    <p class="experience"><span class="exp">Experience</span><span>2 - 4 years</span></p>
+                    <div class="clear"></div>
+                    <h4> Location </h4>
+                    <p class="lctn">
+                        <ul>
+
+                            <li>India - Cochin</li>
+
+                        </ul>
+                    </p>
+                    <h4> Description </h4><p>QBurst is looking for a Business Development Executive who will be responsible for prospecting, qualifying and generating new and existing sales leads to support the Business Development Team. </p><h4> Responsibilities </h4><ul>
+<li>Follow up on leads and conduct research to identify potential prospects</li>
+<li>Work alongside the pre-sales team with product demonstrations</li>
+<li>Coordination with client team and QBurst technical team</li>
+<li>Manage scope and expectation of the client</li>
+<li>Negotiate contract rates with clients, with a focus on company profitability goals and objectives</li>
+<li>Follow up on leads generated by the marketing department and from inbound inquiries.</li>
+</ul>
+<h4> Requirements </h4><ul>
+<li>Strong communication skills and IT fluency</li>
+<li>A proven track record of strong client relationships</li>
+<li>Excellent client service skills</li>
+<li>Experience of selling Software or IT based solutions or technical products</li>
+<li>Ability to work in a techno-functional role</li>
+<li>Awareness of web and mobile technologies</li>
+<li>Willingness to travel for short/medium term</li>
+</ul>
+
+                    <div class="clear"></div>
+                    <div class="postresume">
+                        <form name="jobOpeningsToApply" method="post" action="https://www.qburst.com/company/career/apply/">
+                            <input type="hidden" name="jobCode" value="EXB/174" />
+                            <input type="hidden" name="jobLocation" value="[{&#39;ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgIDburAKDA&#39;: u&#39;India - Cochin&#39;}]" />
+                            <input type="submit" class="resumebtn" value='Apply with your Resume' />
+                        </form>
+                    </div>
+                    <div class="shareBox">
+                        <h3>Share with Friends</h3>
+                        <!-- AddThis Button BEGIN -->
+                        <div class="addthis_toolbox addthis_default_style">
+                            <a class="addthis_button_linkedin" addthis:url="www.qburst.com/company/career/openings/#EXB/174" addthis:title="Executive, Business Development" addthis:description=" QBurst is looking for a Business Development Executive who will be responsible for prospecting, qualifying and generating new and existing sales leads to support the Business Development Team.  " addthis:ui_email_note=" QBurst is looking for a Business Development Executive who will be responsible for prospecting, qualifying and generating new and existing sales leads to support the Business Development Team.  ">
+				        </a>
+                            <a class="addthis_button_twitter" addthis:url="www.qburst.com/company/career/openings/#EXB/174" addthis:title=" QBurst is looking for a Business Development Executive who will be responsible for prospecting, qualifying and generating new and existing sales leads to support the Business Development Team.  " addthis:description=" QBurst is looking for a Business Development Executive who will be responsible for prospecting, qualifying and generating new and existing sales leads to support the Business Development Team.  " addthis:ui_email_note=" QBurst is looking for a Business Development Executive who will be responsible for prospecting, qualifying and generating new and existing sales leads to support the Business Development Team.  ">
+				        </a>
+                            <a class="addthis_button_facebook" addthis:url="www.qburst.com/company/career/openings/#EXB/174" addthis:title="Executive, Business Development" addthis:description=" QBurst is looking for a Business Development Executive who will be responsible for prospecting, qualifying and generating new and existing sales leads to support the Business Development Team.  " addthis:ui_email_note=" QBurst is looking for a Business Development Executive who will be responsible for prospecting, qualifying and generating new and existing sales leads to support the Business Development Team.  ">
+				    	</a>
+                            <a class="addthis_button_email" addthis:url="www.qburst.com/company/career/openings/#EXB/174" addthis:title="Executive, Business Development" addthis:description=" QBurst is looking for a Business Development Executive who will be responsible for prospecting, qualifying and generating new and existing sales leads to support the Business Development Team.  " addthis:ui_email_note=" QBurst is looking for a Business Development Executive who will be responsible for prospecting, qualifying and generating new and existing sales leads to support the Business Development Team.  ">
+				        </a>
+                        </div>
+                        <script type="text/javascript">
+                        var addthis_config = { "data_track_addressbar": false };
+                        </script>
+                        <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51f9f5212632972d"></script>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </li>
+
+            <li class="clearfix">
+                <a style="visibility: hidden;" name="SSE/171"></a>
+                <div class="holder">
+                    <p class="jobtitle">Senior Software Engineer</p>
+                    <p class="jobC">SSE/171</p>
+                    <p class="expce">5+  years</p>
+                    <p class="toggler"><span class="toChild"></span></p>
+                </div>
+                <div class="careercontent clearfix">
+                    <p class="experience"><span class="exp">Experience</span><span>5+  years</span></p>
+                    <div class="clear"></div>
+                    <h4> Location </h4>
+                    <p class="lctn">
+                        <ul>
+
+                            <li>USA - Stafford, Texas</li>
+
+                        </ul>
+                    </p>
+                    <h4> Description </h4><p>QBurst has an exciting opportunity for Senior Engineers who are willing to work as a part of a software team delivering innovative solutions.</p><h4> Responsibilities </h4><ul>
+<li>Participate in architecture review sessions and provide inputs to architecture team through framework analysis, design patterns, prototype specifications</li>
+<li>Perform high and low level design, provide pseudo codes, implement prototype </li>
+<li>Conduct design reviews</li>
+<li>Participate in creating application architecture document to provide deliverables in line with architectural requirements</li>
+<li>Create low level design artifacts independently and high level design artifacts with guidance and support </li>
+<li>Deliver high quality code deliverables and support peers in quality checks such that design requirements are met </li>
+<li>Create user documentation </li>
+<li>Lead validation activities for all types of testing </li>
+<li>Participate in Knowledge Transfer sessions, help prepare system appreciation documents and support the transition process </li>
+<li>Perform root-cause analysis of any issues that arise post-implementation and work on solutions related to issue fixing </li>
+<li>Support and coach peers and juniors as and when required on specific technical competencies required to deliver on the assigned tasks </li>
+</ul>
+<p> </p><h4> Requirements </h4><ul>
+<li>B.S degree in Computer Science or Information Technology and 5 years of experience as Software Engineer or in a related position  </li>
+<li>Requires experience in all aspects of Software Development Life Cycle </li>
+<li>Experience must include use of TIBCO Business Works, TIBCO iProcess, TIBCO ActiveMatrix, SAP PI, MS SQL Server, JIRA, Java, and Rest/SOAP API  </li>
+<li>Travel/relocation to unanticipated project locations throughout the U.S. may be required</li>
+</ul>
+<h4> Qualified applicants, please submit resume to jobs@qburst.com. </h4>
+                    <div class="clear"></div>
+                    <div class="postresume">
+                        <form name="jobOpeningsToApply" method="post" action="https://www.qburst.com/company/career/apply/">
+                            <input type="hidden" name="jobCode" value="SSE/171" />
+                            <input type="hidden" name="jobLocation" value="[{&#39;ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgOC1_7gKDA&#39;: u&#39;USA - Stafford, Texas&#39;}]" />
+                            <input type="submit" class="resumebtn" value='Apply with your Resume' />
+                        </form>
+                    </div>
+                    <div class="shareBox">
+                        <h3>Share with Friends</h3>
+                        <!-- AddThis Button BEGIN -->
+                        <div class="addthis_toolbox addthis_default_style">
+                            <a class="addthis_button_linkedin" addthis:url="www.qburst.com/company/career/openings/#SSE/171" addthis:title="Senior Software Engineer" addthis:description=" QBurst has an exciting opportunity for Senior Engineers who are willing to work as a part of a software team delivering innovative solutions. " addthis:ui_email_note=" QBurst has an exciting opportunity for Senior Engineers who are willing to work as a part of a software team delivering innovative solutions. ">
+				        </a>
+                            <a class="addthis_button_twitter" addthis:url="www.qburst.com/company/career/openings/#SSE/171" addthis:title=" QBurst has an exciting opportunity for Senior Engineers who are willing to work as a part of a software team delivering innovative solutions. " addthis:description=" QBurst has an exciting opportunity for Senior Engineers who are willing to work as a part of a software team delivering innovative solutions. " addthis:ui_email_note=" QBurst has an exciting opportunity for Senior Engineers who are willing to work as a part of a software team delivering innovative solutions. ">
+				        </a>
+                            <a class="addthis_button_facebook" addthis:url="www.qburst.com/company/career/openings/#SSE/171" addthis:title="Senior Software Engineer" addthis:description=" QBurst has an exciting opportunity for Senior Engineers who are willing to work as a part of a software team delivering innovative solutions. " addthis:ui_email_note=" QBurst has an exciting opportunity for Senior Engineers who are willing to work as a part of a software team delivering innovative solutions. ">
+				    	</a>
+                            <a class="addthis_button_email" addthis:url="www.qburst.com/company/career/openings/#SSE/171" addthis:title="Senior Software Engineer" addthis:description=" QBurst has an exciting opportunity for Senior Engineers who are willing to work as a part of a software team delivering innovative solutions. " addthis:ui_email_note=" QBurst has an exciting opportunity for Senior Engineers who are willing to work as a part of a software team delivering innovative solutions. ">
+				        </a>
+                        </div>
+                        <script type="text/javascript">
+                        var addthis_config = { "data_track_addressbar": false };
+                        </script>
+                        <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51f9f5212632972d"></script>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </li>
+
+            <li class="clearfix">
+                <a style="visibility: hidden;" name="ATC/164"></a>
+                <div class="holder">
+                    <p class="jobtitle">Lead/Architect - Web Applications</p>
+                    <p class="jobC">ATC/164</p>
+                    <p class="expce">6 - 12 years</p>
+                    <p class="toggler"><span class="toChild"></span></p>
+                </div>
+                <div class="careercontent clearfix">
+                    <p class="experience"><span class="exp">Experience</span><span>6 - 12 years</span></p>
+                    <div class="clear"></div>
+                    <h4> Location </h4>
+                    <p class="lctn">
+                        <ul>
+
+                            <li>India - Calicut</li>
+
+                        </ul>
+                    </p>
+                    <h4> Description </h4><p>We are looking for Lead / Architect who will be responsible for leading the specifications, design, and development of large-scale, Internet-based applications, frameworks and platforms.</p><h4> Responsibilities </h4><ul>
+<li>Design, develop, and debug scalable and high-performance, service-based web applications</li>
+<li>Play a leading role in supporting and enhancing the architecture</li>
+<li>Help define technical solutions and a unified framework from the design and architecture through development, testing and release</li>
+<li>Help guide the technology directions by recommending specific technologies to pursue, suggesting training and staff development activities</li>
+<li>Evaluate and prototype POC using the best technologies for the job</li>
+</ul>
+<h4> Requirements </h4><ul>
+<li>Hands-on experience with web development in any of the following languages: Java, Python, Ruby, PHP etc.</li>
+<li>Over 6 years of experience in open source using HTML5, CSS3 and JavaScript(JS)</li>
+<li>Deep knowledge of multiple JS libraries (angular.js, react.js, breeze.js, require.js, Bootstrap.js, Backbone.js) </li>
+<li>Strong knowledge of application-profiling and performance-tuning</li>
+<li>Ability to accurately estimate software development tasks given a set of requirements and assumptions </li>
+<li>Ability to work with Project Managers to develop task-level project plans and proposals</li>
+<li>Excellent oral and written communication</li>
+<li>Self-motivation and the ability to work under minimal supervision</li>
+</ul>
+
+                    <div class="clear"></div>
+                    <div class="postresume">
+                        <form name="jobOpeningsToApply" method="post" action="https://www.qburst.com/company/career/apply/">
+                            <input type="hidden" name="jobCode" value="ATC/164" />
+                            <input type="hidden" name="jobLocation" value="[{&#39;ag9zfnFidXJzdC1wb3J0YWxyFQsSCExvY2F0aW9uGICAgMCogaEJDA&#39;: u&#39;India - Calicut&#39;}]" />
+                            <input type="submit" class="resumebtn" value='Apply with your Resume' />
+                        </form>
+                    </div>
+                    <div class="shareBox">
+                        <h3>Share with Friends</h3>
+                        <!-- AddThis Button BEGIN -->
+                        <div class="addthis_toolbox addthis_default_style">
+                            <a class="addthis_button_linkedin" addthis:url="www.qburst.com/company/career/openings/#ATC/164" addthis:title="Lead/Architect - Web Applications" addthis:description=" We are looking for Lead / Architect who will be responsible for leading the specifications, design, and development of large-scale, Internet-based applications, frameworks and platforms. " addthis:ui_email_note=" We are looking for Lead / Architect who will be responsible for leading the specifications, design, and development of large-scale, Internet-based applications, frameworks and platforms. ">
+				        </a>
+                            <a class="addthis_button_twitter" addthis:url="www.qburst.com/company/career/openings/#ATC/164" addthis:title=" We are looking for Lead / Architect who will be responsible for leading the specifications, design, and development of large-scale, Internet-based applications, frameworks and platforms. " addthis:description=" We are looking for Lead / Architect who will be responsible for leading the specifications, design, and development of large-scale, Internet-based applications, frameworks and platforms. " addthis:ui_email_note=" We are looking for Lead / Architect who will be responsible for leading the specifications, design, and development of large-scale, Internet-based applications, frameworks and platforms. ">
+				        </a>
+                            <a class="addthis_button_facebook" addthis:url="www.qburst.com/company/career/openings/#ATC/164" addthis:title="Lead/Architect - Web Applications" addthis:description=" We are looking for Lead / Architect who will be responsible for leading the specifications, design, and development of large-scale, Internet-based applications, frameworks and platforms. " addthis:ui_email_note=" We are looking for Lead / Architect who will be responsible for leading the specifications, design, and development of large-scale, Internet-based applications, frameworks and platforms. ">
+				    	</a>
+                            <a class="addthis_button_email" addthis:url="www.qburst.com/company/career/openings/#ATC/164" addthis:title="Lead/Architect - Web Applications" addthis:description=" We are looking for Lead / Architect who will be responsible for leading the specifications, design, and development of large-scale, Internet-based applications, frameworks and platforms. " addthis:ui_email_note=" We are looking for Lead / Architect who will be responsible for leading the specifications, design, and development of large-scale, Internet-based applications, frameworks and platforms. ">
+				        </a>
+                        </div>
+                        <script type="text/javascript">
+                        var addthis_config = { "data_track_addressbar": false };
+                        </script>
+                        <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51f9f5212632972d"></script>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </li>
+
+        </ul>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+{% endblock %}
